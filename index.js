@@ -1,75 +1,32 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js');
-
-// TODO: Create an array of questions for user input
+const fs = require('fs');
+// Array of questions for user input
 const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is your Project Title? (Required)',
+        message: 'What is the title of your project? (Required)',
         validate: titleInput => {
             if (titleInput) {
-              return true;
-            }
-              else {
-                  console.log('Please enter your Project Title');
-              return false;
+                return true;
+            } else {
+                console.log('Please enter your title!');
+                return false;
             }
         }
     },
     {
         type: 'input',
-        name: 'description',
-        message: 'Please add a detailed and informative Project Description'
-    },
-    {
-        type: 'input',
-        name: 'link',
-        message: 'Enter the GitHub link to your project'
-    },
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'Describe the steps and requirements for installing your application'
-    },
-    {
-        type: 'input',
-        name: 'usage',
-        message: 'Provide usage instructions, helpful tips, examples, demos and/or screenshots here'
-    },
-    {
-        type: 'input',
-        name: 'features',
-        message: "Describe your project's noteworthy features (optional)"
-    },
-    {
-        type: 'input',
-        name: 'tests',
-        message: 'Are there any tests for your application? If so, include them here'
-    },
-    {
-        type: 'input',
-        name: 'credits',
-        message: 'List your collaborators and any assets used that require attribution'
-    },
-    {
-        type: 'input',
-        name: 'contribute',
-        message: 'Can users contribute? Describe instuctions and guidelines for contributing to this project'
-    },
-    {
-        type: 'input',
-        name: 'username',
-        message: 'What is your GitHub username? (Required)',
-        validate: usernameInput => {
-            if (usernameInput) {
-              return true;
-            }
-              else {
-                  console.log('Please enter your GitHub username');
-              return false;
+        name: 'githubUsername',
+        message: 'What is your GitHub Username? (Required)',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Please enter your GitHub username!');
+                return false;
             }
         }
     },
@@ -77,37 +34,128 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'What is your email address? (Required)',
-        validate: emailInput => {
-            if (emailInput) {
-              return true;
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Please enter your email address!');
+                return false;
             }
-              else {
-                console.log('Please enter your email address');
-              return false;
+        }
+    },
+    {
+        type: 'input',
+        name: 'what',
+        message: 'What is your project and what problem will it solve? (Required)',
+        validate: whatInput => {
+            if (whatInput) {
+                return true;
+            } else {
+                console.log('Please enter what your project is!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'why',
+        message: 'Why did you create this project? (Required)',
+        validate: whyInput => {
+            if (whyInput) {
+                return true;
+            } else {
+                console.log('Please enter why you created this project!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'how',
+        message: 'How will someone use this? (Required)',
+        validate: howInput => {
+            if (howInput) {
+                return true;
+            } else {
+                console.log('Please enter what your project is!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Please provide step-by-step installation instructions for your project. (Required)',
+        validate: installInput => {
+            if (installInput) {
+                return true;
+            } else {
+                console.log('Please enter your installation instructions!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'Please provide instructions and examples for use. (Required)',
+        validate: usageInput => {
+            if (usageInput) {
+                return true;
+            } else {
+                console.log('Please enter your use instructions!');
+                return false;
             }
         }
     },
     {
         type: 'list',
         name: 'license',
-        message: 'Please choose a license type for your repository (select one)',
-        choices: [
-            'GNU GPLv2' ,
-            'GNU GPLv3' ,
-            'MIT' ,
-            'Academic Free License v3.0' ,
-            'Apache-2.0' ,
-            'BSD' ,
-            'BSD 2' ,
-            'BSD 3' ,
-            'Eclipse 1.0' ,
-            'Eclipse 2.0' ,
-            'LGPLv2.1' ,
-            'Microsoft Public']
+        message: 'Which license will you use for your project?',
+        choices: ['agpl', 'apache', 'mit', 'no license']
     },
+    {
+        type: 'confirm',
+        name: 'confirmContributers',
+        message: 'Would you like to allow other developers to contribute?',
+        default: true
+    },
+    {
+        type: 'input',
+        name: 'contribute',
+        message: 'Please provide guidelines for contributing. (Required)',
+        when: ({ confirmContributers }) => {
+            if (confirmContributers) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validate: contributerInput => {
+            if (contributerInput) {
+                return true;
+            } else {
+                console.log('Please enter contributer guidelines!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'test',
+        message: 'Please provide instructions on how to test the app. (Required)',
+        validate: testInput => {
+            if (testInput) {
+                return true;
+            } else {
+                console.log('Please enter your use test instructions!');
+                return false;
+            }
+        }
+    }
 ];
 
-// TODO: Create a function to write README file
+// function to write README file
 const writeFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/generated-README.md', fileContent, err => {
@@ -124,7 +172,7 @@ const writeFile = fileContent => {
     });
 };
 
-// TODO: Create a function to initialize app
+// function to prompt questions and store user inputs
 const init = () => {
 
     return inquirer.prompt(questions)
