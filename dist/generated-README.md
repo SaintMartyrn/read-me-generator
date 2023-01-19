@@ -1,66 +1,54 @@
 
-  # cake
+  # test readme
   
-  
-  ![badge](https://img.shields.io/badge/license-mit-blue)
-    
+   
 
   ## Table-of-Contents
 
   * [Description](#description)
   * [Installation](#installation)
   * [Usage](#usage)
-  
-  * [License](#license)
-    
+   
   * [Contributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
   
   ## [Description](#table-of-contents)
 
-  world hunger
+  This project will generate a readme to help out junior coders in their work
 
-  to make money
+  I created this project because I struggle making readmes as well
 
-  for profit
+  They can use this to create a concise and easy to read readme
 
   ## [Installation](#table-of-contents)
 
-  there are none
+  after cloning the repo, install inquire, and run 'node index.js
 
   ## [Usage](#table-of-contents)
 
-  there are none
+  follow along with the video in the readme to see an indepth guide
   
   For more information on how to add screenshots for examples, visit the following website:
   
   [Mark Down Tutorial](https://agea.github.io/tutorial.md/)
   
-  
-  ## [License](#table-of-contents)
-
-  The application is covered under the following license:
-
-  
-  [mit](https://choosealicense.com/licenses/mit)
-    
-    
+   
 
   ## [Contributing](#table-of-contents)
   
   
-  give me more money
+  Thank you for your interest in helping out; however, I will not be accepting contributions from third parties.
     
 
   ## [Tests](#table-of-contents)
 
-  try it yourself
+  after installin inquire, run 'node index.js' in the terminal to see if it is working 
 
   ## [Questions](#table-of-contents)
 
   Please contact me using the following links:
 
-  [GitHub](https://github.com/pizzaman)
+  [GitHub](https://github.com/username@github.com)
 
-  [Email: hello@gmail.com](mailto:hello@gmail.com)
+  [Email: hello123@gmail.com](mailto:hello123@gmail.com)
